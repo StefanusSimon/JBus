@@ -3,22 +3,17 @@ package StefanusSimonJBusRS;
 
 
 /**
- * Modul 1
+ * Modul 2
  * Stefanus Simon Rilando - 2206830422
  */
 public class JBus
 {
     public static void main(String[] args){
-        JBus jBus = new JBus();
-        System.out.println("Bus ID: " + jBus.getBusId());
-        System.out.println("Bus Name: " + jBus.getBusName());
-        System.out.println("Is Discount: " + jBus.isDiscount());
-        System.out.println("Discount Percentage (1000, 900): " + jBus.getDiscountPercentage(1000, 900));
-        System.out.println("Discounted Price (1000, 10.0f): " + jBus.getDiscountedPrice(1000, 10.0f));
-        System.out.println("Original Price (900, 10.0f): " + jBus.getOriginalPrice(900, 10.0f));
-        System.out.println("Admin Fee Percentage: " + jBus.getAdminFeePercentage());
-        System.out.println("Admin Fee (1000): " + jBus.getAdminFee(1000));
-        System.out.println("Total Price (10000, 2): " + jBus.getTotalPrice(10000, 2));
+        Bus testBus = createBus();
+        System.out.println(testBus.name);
+        System.out.println(testBus.facility);
+        System.out.println(testBus.price.price);
+        System.out.println(testBus.capacity);
     }
     
     public static int getBusId(){
@@ -68,6 +63,12 @@ public class JBus
     
     public static int getTotalPrice(int price, int numberOfSeat){
     return (int) ((price * numberOfSeat) + getAdminFee(price * numberOfSeat));
+    }
+    
+    public static Bus createBus(){
+        Price price = new Price (750000, 5);
+        Bus bus = new Bus ("Netlab Stefanus", Facility.LUNCH, price, 25);
+        return bus;
     }
     
 }    
