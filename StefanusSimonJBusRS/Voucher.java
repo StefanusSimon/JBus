@@ -24,6 +24,7 @@ public class Voucher
     }
     
     public double apply(Price price){
+        this.used = true;
         if(this.type == Type.REBATE){
             if(cut > price.price){
                 return 0;
