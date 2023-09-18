@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Voucher
+comment0.text=\r\n\ Modul\ 2\r\n\ Stefanus\ Simon\ Rilando\ -\ 2206830422\r\n
+comment1.params=name\ code\ type\ minimum\ cut
+comment1.target=Voucher(java.lang.String,\ int,\ Type,\ double,\ double)
+comment2.params=price
+comment2.target=double\ apply(Price)
+comment3.params=
+comment3.target=boolean\ isUsed()
+comment4.params=price
+comment4.target=boolean\ canApply(Price)
+numComments=5
