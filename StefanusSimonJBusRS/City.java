@@ -2,7 +2,7 @@ package StefanusSimonJBusRS;
 
 
 /**
-* Modul 2
+* Modul 3
 * Stefanus Simon Rilando - 2206830422
 */
 public enum City

@@ -2,19 +2,21 @@ package StefanusSimonJBusRS;
 
 
 /**
-* Modul 2
+* Modul 3
  * Stefanus Simon Rilando - 2206830422
  */
-public class Voucher
+public class Voucher extends Serializable
 {
-    public String name;
-    private boolean used;
-    public double minimum;
-    public double cut;
-    public int code;
-    public Type type;
     
-    public Voucher(String name, int code, Type type, double minimum, double cut){
+    private boolean used;
+    public double cut;
+    public Type type;
+    public double minimum;
+    public int code;
+    public String name;
+    
+    public Voucher(int id, String name, int code, Type type, double minimum, double cut){
+        super(id);
         this.name = name;
         this.code = code;
         this.type = type;
