@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Rating
-comment0.text=\r\n\ Modul\ 2\r\n\ Stefanus\ Simon\ Rilando\ -\ 2206830422\r\n
+comment0.text=\r\n\ Modul\ 3\r\n\ Stefanus\ Simon\ Rilando\ -\ 2206830422\r\n
 comment1.params=
 comment1.target=Rating()
 comment2.params=rating
@@ -11,4 +11,6 @@ comment4.params=
 comment4.target=long\ getCount()
 comment5.params=
 comment5.target=double\ getAverage()
-numComments=6
+comment6.params=
+comment6.target=java.lang.String\ toString()
+numComments=7

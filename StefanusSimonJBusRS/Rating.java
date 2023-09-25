@@ -2,7 +2,7 @@ package StefanusSimonJBusRS;
 
 
 /**
- * Modul 2
+ * Modul 3
  * Stefanus Simon Rilando - 2206830422
  */
 public class Rating
@@ -36,6 +36,12 @@ public class Rating
             double average = this.total / this.count;
             return average;
     }
-}
+    }
+    
+    public String toString(){
+       String println = "Rating Info: " + " | Count: " + count + " | Total: " + total;
+       return println; 
+    }
+
 }
 

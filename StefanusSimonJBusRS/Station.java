@@ -9,15 +9,17 @@ public class Station extends Serializable
 {
     public City city;
     public String stationName;
+    public String address;
     
-    public Station(int id, String stationName, City city){
+    public Station(int id, String stationName, City city, String address){
        super(id);
        this.stationName = stationName;
        this.city = city;
+       this.address = address;
     }
     
-    public String print(){
-        String println = "Station info: " + " | Station name: " + stationName + " | City: " + city.toString();
+    public String toString(){
+        String println = "Station info: " + " Id: " + id + " | Station name: " + stationName + " | City: " + city.toString();
         return println;
     }
     
