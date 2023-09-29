@@ -1,8 +1,16 @@
 #BlueJ class context
 comment0.target=Bus
-comment0.text=\r\n\ Modul\ 3\r\n\ Stefanus\ Simon\ Rilando\ -\ 2206830422\r\n
+comment0.text=\r\n\ Modul\ 4\r\n\ Stefanus\ Simon\ Rilando\ -\ 2206830422\r\n
 comment1.params=id\ name\ facility\ price\ capacity\ busType\ city\ departure\ arrival
 comment1.target=Bus(int,\ java.lang.String,\ Facility,\ Price,\ int,\ BusType,\ City,\ Station,\ Station)
 comment2.params=
 comment2.target=java.lang.String\ toString()
-numComments=3
+comment3.params=calendar
+comment3.target=void\ addSchedule(java.util.Calendar)
+comment4.params=schedule
+comment4.target=void\ printSchedule(Schedule)
+comment5.params=
+comment5.target=java.lang.Object\ write()
+comment6.params=obj
+comment6.target=java.lang.Boolean\ read(java.lang.String)
+numComments=7

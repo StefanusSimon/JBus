@@ -9,19 +9,21 @@ package StefanusSimonJBusRS;
 public class JBus
 {
     public static void main(String[] args){
-        Review testReview = new Review(1, "23 August 2023", "Bad Quality");
-        Price testPrice = new Price(100000, 20000);
-        Station testDeparture = new Station(2, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya");
-        Station testArrival = new Station(3, "Halte UI", City.JAKARTA, "Universitas Indonesia");
-        Bus testBus = new Bus(1, "Busway", Facility.AC, testPrice, 50, BusType.REGULER, City.DEPOK, testDeparture, testArrival);
-        Account testAccount = new Account(1, "Bob", "bob@gmail.com", "Bob");
-        Rating testRating = new Rating();
-        
-        System.out.println(testReview);   
-        System.out.println(testBus);
-        System.out.println(testAccount);   
-        System.out.println(testPrice);
-        System.out.println(testRating);
+        Bus testBus = createBus();
+     
+     Payment testPayment = new Payment(1, 1, 1, testBus.id, "S1");
+     System.out.println(testPayment.getDepartureInfo());
+     System.out.println(testPayment.getTime());
+     
+     Calendar sched1 = Calendar.getInstance();
+     testBus.addSchedule(sched1);
+     Calendar sched2 =  Calendar.getInstance();
+     sched2.add(Calendar.DAY_OF_MONTH, 3);
+     testBus.addSchedule(sched2);
+     
+     for(Schedule s : testBus.schedules) {
+         testBus.printSchedule(s);
+     }
     }
     
     public static int getBusId(){
@@ -73,11 +75,11 @@ public class JBus
     return (int) ((price * numberOfSeat) + getAdminFee(price * numberOfSeat));
     }
     
-    /*public static Bus createBus(){
+    public static Bus createBus(){
         Price price = new Price (750000, 5);
         Bus bus = new Bus ("Netlab Stefanus", Facility.LUNCH, price, 25);
         return bus;
-    }*/
+    }
     
 }    
     

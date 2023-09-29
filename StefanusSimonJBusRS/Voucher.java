@@ -2,10 +2,10 @@ package StefanusSimonJBusRS;
 
 
 /**
-* Modul 3
- * Stefanus Simon Rilando - 2206830422
- */
-public class Voucher extends Serializable
+* Modul 4
+* Stefanus Simon Rilando - 2206830422
+*/
+public class Voucher extends Serializable implements FileParser
 {
     
     private boolean used;
@@ -50,5 +50,13 @@ public class Voucher extends Serializable
         } else {
             return false;
         }
+    }
+    
+     public Object write(){
+       return null;
+   }
+    
+    public Boolean read(String obj){
+        return false;
     }
 }

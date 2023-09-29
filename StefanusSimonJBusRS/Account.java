@@ -2,10 +2,10 @@ package StefanusSimonJBusRS;
 
 
 /**
-* Modul 3
+* Modul 4
  * Stefanus Simon Rilando - 2206830422
  */
-public class Account extends Serializable
+public class Account extends Serializable implements FileParser
 {
     public String email;
     public String name;
@@ -21,5 +21,14 @@ public class Account extends Serializable
     public String toString(){
         String println = "Account info: " + " | Id: " + id + " | Email: " + email + " | Name: " + name + " | Password: " + password;
         return println;
+    }
+    
+     public Object write(){
+       return null;
+   }
+   
+   
+    public Boolean read(String obj){
+        return false;
     }
 }
