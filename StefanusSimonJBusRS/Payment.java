@@ -34,13 +34,15 @@ public class Payment extends Invoice
     }
     
     public String getTime(){
-        SimpleDateFormat formatted = new SimpleDateFormat ("MMMM, dd, yyy HH:mm:ss");
-        String formattedDate = formatted.format(departureDate.getTime());
+        SimpleDateFormat formatted = new SimpleDateFormat ("MMMM, d yyy hh:mm:ss");
+        String formattedDate = formatted.format(super.time.getTime());
         return formattedDate;
     } 
     
     public String getDepartureInfo(){
-        String println = "Payment Info: " + " | Bus ID: " + String.valueOf(busId) +" | Departure Date: " + departureDate.getTime() + " | Bus Seat: " + busSeat;
+        SimpleDateFormat formatted = new SimpleDateFormat ("MMMM, d yyy hh:mm:ss");
+        String formattedDate = formatted.format(super.time.getTime());
+        String println = "Payment Info: " + " | Buyer ID: " + buyerId + " | Renter ID: " + renterId + " | Bus ID: " + String.valueOf(busId) +" | Departure Date: " + formattedDate + " | Bus Seat: " + busSeat;
         return println;
     }   
 }

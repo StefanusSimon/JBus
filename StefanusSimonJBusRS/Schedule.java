@@ -10,11 +10,11 @@ import java.util.LinkedHashMap;
 */
 public class Schedule
 {
-    public Calendar depatureSchedule;
+    public Calendar departureSchedule;
     public Map< String, Boolean > seatAvailability;
     
     public Schedule(Calendar departureSchedule, int numberOfSeats){
-        this.depatureSchedule = depatureSchedule;
+        this.departureSchedule = departureSchedule;
         initializeSeatAvailability(numberOfSeats);
     }
     
