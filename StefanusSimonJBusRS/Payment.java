@@ -1,5 +1,5 @@
 package StefanusSimonJBusRS;
-import java.util.Calendar;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 
@@ -10,23 +10,21 @@ import java.text.SimpleDateFormat;
 public class Payment extends Invoice
 {
     private int busId;
-    public Calendar departureDate;
+    public Timestamp departureDate;
     public String busSeat;
     
-    public Payment(int id, int buyerId, int renterId, int busId,String busSeat){
+    public Payment(int id, int buyerId, int renterId, int busId,String busSeat, Timestamp departureDate){
         super(id, buyerId, renterId);
         this.busId = busId;
         this.busSeat = busSeat;
-        this.departureDate = Calendar.getInstance();
-        departureDate.add(Calendar.DAY_OF_MONTH,2);
+        this.departureDate = new Timestamp(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 2));
     }
     
-    public Payment(int id, Account buyer, Renter renter, int busId, String busSeat){
+    public Payment(int id, Account buyer, Renter renter, int busId, String busSeat, Timestamp departureDate){
         super(id, buyer, renter);
         this.busId = busId;
         this.busSeat = busSeat;
-        this.departureDate = Calendar.getInstance();
-        departureDate.add(Calendar.DAY_OF_MONTH,2);
+        this.departureDate = new Timestamp(System.currentTimeMillis()+ (1000 * 60 * 60 * 24 * 2));
     }
     
     public int getBusId(){
@@ -44,5 +42,33 @@ public class Payment extends Invoice
         String formattedDate = formatted.format(super.time.getTime());
         String println = "Payment Info: " + " | Buyer ID: " + buyerId + " | Renter ID: " + renterId + " | Bus ID: " + String.valueOf(busId) +" | Departure Date: " + formattedDate + " | Bus Seat: " + busSeat;
         return println;
-    }   
+    }  
+    
+    public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus){
+        for(Schedule avail : bus.schedules){
+            if(avail.departureSchedule.equals(departureSchedule)){
+               for(String seatName : avail.seatAvailability.keySet()){
+                   if(seatName.equals(seat) && avail.seatAvailability.get(seat)){
+                       avail.bookSeat(seat);
+                       return true;
+                   }
+               }
+            }
+        }
+        return false;
+    }
+    
+    public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
+      for(Schedule avail : bus.schedules){
+            if(avail.departureSchedule.equals(departureSchedule)){
+               for(String seatName : avail.seatAvailability.keySet()){
+                   if(seatName.equals(seat) && avail.seatAvailability.get(seat)){
+                       avail.bookSeat(seat);
+                       return true;
+                   }
+               }
+            }
+        }
+        return false;
+    }  
 }

@@ -1,6 +1,6 @@
 package StefanusSimonJBusRS;
 import java.util.Calendar;
-
+import java.sql.Timestamp;
 
 
 /**
@@ -10,19 +10,35 @@ import java.util.Calendar;
 public class JBus
 {
     public static void main(String[] args){
-    Bus testBus = createBus();
-     Payment testPayment = new Payment(1, 1, 1, testBus.id, "S1");
-     System.out.println(testPayment.getDepartureInfo());
-     System.out.println(testPayment.getTime());
-     Calendar sched1 = Calendar.getInstance();
-     testBus.addSchedule(sched1);
-     Calendar sched2 =  Calendar.getInstance();
-     sched2.add(Calendar.DAY_OF_MONTH, 3);
-     testBus.addSchedule(sched2);
+    Bus b = createBus();
      
-     for(Schedule s : testBus.schedules) {
-         testBus.printSchedule(s);
-     }
+     Timestamp schedule1 = Timestamp.valueOf("2023-7-18 15:00:00");
+     Timestamp schedule2 = Timestamp.valueOf("2023-7-20 12:00:00");
+     
+     b.addSchedule(schedule1);
+     b.addSchedule(schedule2);
+     
+     b.schedules.forEach(Schedule::printSchedule);
+     
+     // Invalid date
+     Timestamp t1 = Timestamp.valueOf("2023-7-19 15:00:00");
+     System.out.println("Invalid date, t1 : " + String.valueOf(Payment.makeBooking(t1, "RS01", b)));
+     
+     // Valid date, invalid seat
+     Timestamp t2 = Timestamp.valueOf("2023-7-18 15:00:00");
+     System.out.println("Valid date, invalid seat, t2 : " + String.valueOf(Payment.makeBooking(t2, "RS20", b)));
+     
+     // Valid date, valid seat
+     System.out.println("Valid date, valid seat, t2 : " + String.valueOf(Payment.makeBooking(t2, "RS07", b)));
+     
+     Timestamp t3 = Timestamp.valueOf("2023-7-20 12:00:00");
+     System.out.println("Valid date, valid seat, t3 : " + String.valueOf(Payment.makeBooking(t3, "RS01", b)));
+     System.out.println("Valid date, valid seat, t3 again : " + String.valueOf(Payment.makeBooking(t3, "RS01", b)));
+     
+     System.out.println("\nOH MY BUSS BUSS BUZZZ");
+     System.out.println("");
+     
+     b.schedules.forEach(Schedule::printSchedule);
     }
     
     public static int getBusId(){
