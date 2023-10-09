@@ -1,5 +1,6 @@
 package StefanusSimonJBusRS;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.text.SimpleDateFormat;
@@ -49,14 +50,33 @@ public class Schedule
     }
    
    public boolean isSeatAvailable(String seat){
-        return this.seatAvailability.get(seat);
+       if(seatAvailability.containsKey(seat)){
+           return seatAvailability.get(seat);
+       }
+       return false;
    }
    
    public void bookSeat(String seat){
-      for(String book : seatAvailability.keySet()){
-            if (book.equals(seat)){
-                this.seatAvailability.put(seat, false);
-            }
-        } 
+       seatAvailability.put(seat, false);
+   }
+
+   public boolean isSeatAvailable (List<String> seat){
+       for(int x = 0; x< seat.size(); x++){
+           if(seatAvailability.containsKey(seat.get(x))){
+               return seatAvailability.get(seat.get(x));
+           }
+       }
+       return false;
+   }
+
+   public void bookSeat(List<String>seat){
+       for(String i : seat) {
+           seatAvailability.put(i, false);
+       }
+   }
+
+   public String toString(){
+       int println = Algorithm.count(seatAvailability.values().iterator(), true);
+       return "Schedule\t: " + departureSchedule + "\nOccupied\t: " + println + "/" + seatAvailability.size();
    }
 }

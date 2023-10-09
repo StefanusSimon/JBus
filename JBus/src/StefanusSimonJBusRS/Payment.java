@@ -1,6 +1,7 @@
 package StefanusSimonJBusRS;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 
 /**
@@ -44,7 +45,7 @@ public class Payment extends Invoice
         return println;
     }  
     
-    public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus){
+    /*public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus){
         for(Schedule avail : bus.schedules){
             if(avail.departureSchedule.equals(departureSchedule)){
                for(String seatName : avail.seatAvailability.keySet()){
@@ -56,7 +57,7 @@ public class Payment extends Invoice
             }
         }
         return false;
-    }
+    }*/
     
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
       for(Schedule avail : bus.schedules){
@@ -70,5 +71,6 @@ public class Payment extends Invoice
             }
         }
         return false;
-    }  
+    }
+
 }
