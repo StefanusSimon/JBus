@@ -73,4 +73,8 @@ public class Payment extends Invoice
         return false;
     }
 
+    public String toString(){
+        return ("id:" + super.id + "\nbuyerId:" + buyerId + "\nrenterId:" + renterId +  "\nbusId:" + busId + "\ndepartureDate:" + departureDate + "\nbusSeat:" + busSeat);
+    }
+
 }
