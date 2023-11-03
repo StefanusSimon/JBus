@@ -5,7 +5,7 @@ package StefanusSimonJBusRS;
 * Modul 4
 * Stefanus Simon Rilando - 2206830422
 */
-public class Voucher extends Serializable implements FileParser
+public class Voucher extends Serializable
 {
     
     private boolean used;

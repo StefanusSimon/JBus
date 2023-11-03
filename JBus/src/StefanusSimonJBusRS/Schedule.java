@@ -61,7 +61,7 @@ public class Schedule
    }
 
    public boolean isSeatAvailable (List<String> seat){
-       for(int x = 0; x< seat.size(); x++){
+       for(int x = 0; x < seat.size(); x++){
            if(seatAvailability.containsKey(seat.get(x))){
                return seatAvailability.get(seat.get(x));
            }
@@ -76,7 +76,7 @@ public class Schedule
    }
 
    public String toString(){
-       int println = Algorithm.count(seatAvailability.values().iterator(), true);
+       int println = Algorithm.count(seatAvailability.values().iterator(), false);
        return "Schedule\t: " + departureSchedule + "\nOccupied\t: " + println + "/" + seatAvailability.size();
    }
 }

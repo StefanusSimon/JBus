@@ -5,7 +5,7 @@ package StefanusSimonJBusRS;
 * Modul 4
  * Stefanus Simon Rilando - 2206830422
  */
-public class Account extends Serializable implements FileParser
+public class Account extends Serializable
 {
     public String email;
     public String name;

@@ -24,16 +24,15 @@ public class Algorithm {
         List<T> pages = new ArrayList<T>();
         T temp;
         int x = 0;
-        int y = 0;
 
-        while(x < pages.size() && iterator.hasNext()){
-            if((x >= (page * pageSize)) && y < ((page + 1) * pageSize)){
+        while(pages.size()<pageSize && iterator.hasNext()){
+            if((x >= (page * pageSize)) && x < ((page + 1) * pageSize)){
                 temp = iterator.next();
                 pages.add(temp);
                 x ++;
-                y ++;
             }else{
                 x ++;
+                temp = iterator.next();
             }
         }
         return pages;

@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 * Modul 4
 * Stefanus Simon Rilando - 2206830422
 */
-public class Bus extends Serializable implements FileParser
+public class Bus extends Serializable
 {
    public int capacity;
    public Facility facility;
@@ -39,16 +39,25 @@ public class Bus extends Serializable implements FileParser
        return println;
    }
    
-   public void addSchedule(Timestamp calendar){
-       Schedule schedule = new Schedule (calendar, capacity);
-       schedules.add(schedule);
-   }
-   
    public Object write(){
        return null;
    }
    
     public Boolean read(String obj){
         return false;
+    }
+
+    public void addSchedule(Timestamp timestamp) {
+        boolean isExisting = false;
+        Schedule schedule = new Schedule(timestamp, capacity);
+        for (Schedule sched : schedules) {
+            if (sched.departureSchedule.equals(schedule.departureSchedule)) {
+                isExisting = true;
+            }
+        }
+
+        if (!isExisting) {
+            schedules.add(schedule);
+        }
     }
 }
