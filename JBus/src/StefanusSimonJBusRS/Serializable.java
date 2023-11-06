@@ -25,17 +25,9 @@ public class Serializable implements Comparable<Serializable> {
         return mapCounter.get(tClass);
     }
 
-    public static <T extends Serializable> Integer setLastAssignedId(Class<T> tClass, int id) {
-        for (Class<?> cl : mapCounter.keySet()) {
-            if (cl.equals(tClass)) {
-                mapCounter.put(tClass, id);
-                return id;
-            }
-        }
-
-        return -1;
+    public static <T> Integer setLastAssignedId(Class<T> setter, int number){
+        return mapCounter.put(setter, number);
     }
-
     @Override
     public int compareTo(Serializable o) {
         if (id == o.id) {

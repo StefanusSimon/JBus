@@ -71,17 +71,19 @@ public class Payment extends Invoice
     }
 
 
-    public static boolean makeBooking(Timestamp departureSchedule, List<String> seat, Bus bus){
-      for(Schedule avail : bus.schedules){
-            if(avail.departureSchedule.equals(departureSchedule)){
-               for(int x = 0; x < seat.size(); x++){
-                   avail.bookSeat(seat.get(x));
-                   }
-               return true;
-               }
+    public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
+        for(Schedule sched : bus.schedules) {
+            if(sched.departureSchedule.equals(departureSchedule)) {
+                for(String seatName : sched.seatAvailability.keySet()) {
+                    if(seatName.equals(seat) && sched.seatAvailability.get(seat)) {
+                        sched.bookSeat(seat);
+                        return true;
+                    }
+                }
             }
-        return false;
         }
+        return false;
+    }
 
 
     public static Schedule availableSchedule(Timestamp departureSchedule, List<String> seat, Bus bus){
