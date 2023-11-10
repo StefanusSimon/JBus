@@ -1,4 +1,4 @@
-package com.StefanusSimonJBusRS;
+package com.StefanusSimonJBusRS.dbjson;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 

@@ -1,6 +1,8 @@
 package com.StefanusSimonJBusRS;
 
 
+import com.StefanusSimonJBusRS.dbjson.Serializable;
+
 /**
  * Modul 3
  * Stefanus Simon Rilando

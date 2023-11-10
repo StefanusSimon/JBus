@@ -1,4 +1,6 @@
 package com.StefanusSimonJBusRS;
+import com.StefanusSimonJBusRS.dbjson.Serializable;
+
 import java.sql.Timestamp;
 
 

@@ -1,6 +1,8 @@
 package com.StefanusSimonJBusRS;
 
 
+import com.StefanusSimonJBusRS.dbjson.Serializable;
+
 import java.util.regex.Pattern;
 
 /**
@@ -13,6 +15,9 @@ public class Account extends Serializable
     public String name;
     public String password;
 
+    public Renter company;
+    public Double balance;
+
     private static final String REGEX_EMAIL = "^[a-zA-Z0-9]+@[a-zA-Z]+(\\.[a-zA-Z]+)+$";
     private static final String REGEX_PASSWORD = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
     
@@ -21,6 +26,8 @@ public class Account extends Serializable
         this.name = name;
         this.email = email;
         this.password = password;
+        this.company = company;
+        this.balance = balance;
         validate();
     }
     
@@ -42,6 +49,11 @@ public class Account extends Serializable
         }
 
         return validateEmail && validatePassword;
+    }
+
+    public boolean topUp (double balance){
+        balance = 0.0;
+        return true;
     }
 
 }

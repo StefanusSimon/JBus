@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.StefanusSimonJBusRS.dbjson.JsonDBEngine;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -17,10 +19,14 @@ import com.google.gson.reflect.TypeToken;*/
  * Modul 4
  * Stefanus Simon Rilando - 2206830422
  */
+
+@SpringBootApplication
 public class JBus
 {
     public static void main(String[] args) throws InterruptedException{
+        JsonDBEngine.Run(JBus.class);
         SpringApplication.run(JBus.class, args);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
         /*try {
             Bus bus = createBus();
             bus.schedules.forEach(Schedule::printSchedule);
