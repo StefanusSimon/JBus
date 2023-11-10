@@ -37,7 +37,7 @@ public class AccountController implements BasicGetController<Account> {
     String getById (@PathVariable int id) { return "account id " + id + " not found!"; }*/
 
     @PostMapping("/register")
-    public BaseResponse<Account> register (
+     BaseResponse<Account> register (
             @RequestParam String name,
             @RequestParam String password,
             @RequestParam String email)
@@ -65,7 +65,7 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/{id}/topUp")
-    public BaseResponse<Double> topUp (
+    BaseResponse<Double> topUp (
             @PathVariable int id,
             @RequestParam double amount)
     {for(Account x : accountTable) {
@@ -78,7 +78,7 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/login")
-    public BaseResponse<Account> login (
+    BaseResponse<Account> login (
             @RequestParam String email,
             @RequestParam String password)
 
@@ -105,7 +105,7 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/{id}/registerRenter")
-    public BaseResponse<Renter> registerRenter (
+    BaseResponse<Renter> registerRenter (
             @PathVariable int id,
             @RequestParam String companyName,
             @RequestParam String phoneNumber,
