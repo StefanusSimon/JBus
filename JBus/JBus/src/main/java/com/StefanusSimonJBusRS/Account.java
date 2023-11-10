@@ -26,8 +26,8 @@ public class Account extends Serializable
         this.name = name;
         this.email = email;
         this.password = password;
-        this.company = company;
-        this.balance = balance;
+        this.company = null;
+        this.balance = 0.0D;
         validate();
     }
     
@@ -51,9 +51,11 @@ public class Account extends Serializable
         return validateEmail && validatePassword;
     }
 
-    public boolean topUp (double balance){
-        balance = 0.0;
-        return true;
+    public boolean topUp (double amount){
+        if(amount > 0){
+            this.balance += amount;
+            return true;
+        }
+        return false;
     }
-
 }
