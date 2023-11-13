@@ -1,6 +1,7 @@
 package com.StefanusSimonJBusRS;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,19 +13,19 @@ public class Payment extends Invoice
 {
     private int busId;
     public Timestamp departureDate;
-    public String busSeat;
+    public List<String> busSeat;
     
     public Payment(int buyerId, int renterId, int busId,String busSeat, Timestamp departureDate){
         super(buyerId, renterId);
         this.busId = busId;
-        this.busSeat = busSeat;
+        this.busSeat = new ArrayList<>();
         this.departureDate = new Timestamp(System.currentTimeMillis());
     }
     
     public Payment(Account buyer, Renter renter, int busId, String busSeat, Timestamp departureDate){
         super(buyer, renter);
         this.busId = busId;
-        this.busSeat = busSeat;
+        this.busSeat = new ArrayList<>();
         this.departureDate = new Timestamp(System.currentTimeMillis());
     }
     
