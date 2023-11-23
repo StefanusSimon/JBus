@@ -13,19 +13,19 @@ public class Payment extends Invoice
 {
     private int busId;
     public Timestamp departureDate;
-    public List<String> busSeat;
+    public List<String> busSeats;
     
-    public Payment(int buyerId, int renterId, int busId,String busSeat, Timestamp departureDate){
+    public Payment(int buyerId, int renterId, int busId, List<String> busSeats, Timestamp departureDate){
         super(buyerId, renterId);
         this.busId = busId;
-        this.busSeat = new ArrayList<>();
+        this.busSeats = busSeats;
         this.departureDate = new Timestamp(System.currentTimeMillis());
     }
     
-    public Payment(Account buyer, Renter renter, int busId, String busSeat, Timestamp departureDate){
+    public Payment(Account buyer, Renter renter, int busId, List<String> busSeats, Timestamp departureDate){
         super(buyer, renter);
         this.busId = busId;
-        this.busSeat = new ArrayList<>();
+        this.busSeats = busSeats;
         this.departureDate = new Timestamp(System.currentTimeMillis());
     }
     
@@ -42,7 +42,7 @@ public class Payment extends Invoice
     public String getDepartureInfo(){
         SimpleDateFormat formatted = new SimpleDateFormat ("MMMM, d yyy hh:mm:ss");
         String formattedDate = formatted.format(super.time.getTime());
-        String println = "Payment Info: " + " | Buyer ID: " + buyerId + " | Renter ID: " + renterId + " | Bus ID: " + String.valueOf(busId) +" | Departure Date: " + formattedDate + " | Bus Seat: " + busSeat;
+        String println = "Payment Info: " + " | Buyer ID: " + buyerId + " | Renter ID: " + renterId + " | Bus ID: " + String.valueOf(busId) +" | Departure Date: " + formattedDate + " | Bus Seat: " + busSeats;
         return println;
     }  
     
@@ -72,7 +72,7 @@ public class Payment extends Invoice
     }
 
 
-    public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
+    public static boolean makeBooking(Timestamp departureSchedule, List<String> seat, Bus bus){
         for(Schedule sched : bus.schedules) {
             if(sched.departureSchedule.equals(departureSchedule)) {
                 for(String seatName : sched.seatAvailability.keySet()) {

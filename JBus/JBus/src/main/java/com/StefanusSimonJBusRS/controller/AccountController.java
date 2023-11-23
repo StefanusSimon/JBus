@@ -16,12 +16,12 @@ import java.security.NoSuchAlgorithmException;
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account> {
 
-    @JsonAutowired(value = Account.class, filepath = "C:\\Users\\USER\\Downloads\\OOP\\JBus\\JBus\\JBus\\src\\main\\java\\com\\StefanusSimonJBusRS\\json\\accounts_db.json")
+    @JsonAutowired(value = Account.class, filepath = "src\\main\\java\\com\\StefanusSimonJBusRS\\json\\accounts_db.json")
     public static JsonTable<Account> accountTable;
 
     static {
         try {
-            accountTable = new JsonTable<>(Account.class, "C:\\Users\\USER\\Downloads\\OOP\\JBus\\JBus\\JBus\\src\\main\\java\\com\\StefanusSimonJBusRS\\json\\accounts_db.json");
+            accountTable = new JsonTable<>(Account.class, "src\\main\\java\\com\\StefanusSimonJBusRS\\json\\accounts_db.json");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

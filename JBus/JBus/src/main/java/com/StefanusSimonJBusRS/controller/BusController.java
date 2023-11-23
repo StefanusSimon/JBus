@@ -17,12 +17,12 @@ import java.util.List;
 @RequestMapping("/bus")
 public class BusController implements BasicGetController <Bus> {
 
-    @JsonAutowired(value = Bus.class, filepath = "C:\\Users\\USER\\Downloads\\OOP\\JBus\\JBus\\JBus\\src\\main\\java\\com\\StefanusSimonJBusRS\\json\\account.json")
+    @JsonAutowired(value = Bus.class, filepath = "src\\main\\java\\com\\StefanusSimonJBusRS\\json\\account.json")
     public static JsonTable<Bus> busTable;
 
     static {
         try {
-            busTable = new JsonTable<>(Bus.class, "C:\\Users\\USER\\Downloads\\OOP\\JBus\\JBus\\JBus\\src\\main\\java\\com\\StefanusSimonJBusRS\\json\\account.json");
+            busTable = new JsonTable<>(Bus.class, "src\\main\\java\\com\\StefanusSimonJBusRS\\json\\account.json");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

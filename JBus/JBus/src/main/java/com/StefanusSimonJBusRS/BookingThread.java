@@ -11,14 +11,13 @@ public class BookingThread extends Thread {
         this.timestamp = timestamp;
         this.start();
     }
-    public void run(){
+    /*public void run(){
         for(Schedule schedule : bus.schedules) {
             if(schedule.departureSchedule.equals(timestamp)) {
                 System.out.println(this.getName() + " ID : " + this.getId());
-                String seat = Payment.makeBooking(timestamp, "RS01", bus) ? "Success" : "Failed";
-                System.out.println(this.getName() + " ID : " + this.getId() + " " + seat);
+                String s = Payment.makeBooking(timestamp, "RS01", bus) ? "Success" : "Failed";
+                System.out.println(this.getName() + " ID : " + this.getId() + " " + s);
             }
-        }
+        }*/
     }
 
-}

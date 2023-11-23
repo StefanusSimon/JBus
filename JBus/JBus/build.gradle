@@ -24,3 +24,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar {
+	manifest{
+		attributes 'Start-Class' : 'com.StefanusSimonJBusRS.JBus'
+	}
+}
