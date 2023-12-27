@@ -1,8 +1,6 @@
 package com.StefanusSimonJBusRS;
 
 
-import com.StefanusSimonJBusRS.dbjson.Serializable;
-
 import java.util.regex.Pattern;
 
 /**

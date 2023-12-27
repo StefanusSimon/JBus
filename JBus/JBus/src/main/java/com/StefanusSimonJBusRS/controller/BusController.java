@@ -2,14 +2,14 @@ package com.StefanusSimonJBusRS.controller;
 
 import com.StefanusSimonJBusRS.*;
 import com.StefanusSimonJBusRS.dbjson.JsonAutowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.StefanusSimonJBusRS.dbjson.JsonTable;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 
@@ -17,12 +17,12 @@ import java.util.List;
 @RequestMapping("/bus")
 public class BusController implements BasicGetController <Bus> {
 
-    @JsonAutowired(value = Bus.class, filepath = "src\\main\\java\\com\\StefanusSimonJBusRS\\json\\account.json")
+    @JsonAutowired(value = Bus.class, filepath = "D:\\JBusAndroid Anus\\src\\main\\java\\com\\StefanusSimonJBusRS\\json\\bus.json")
     public static JsonTable<Bus> busTable;
 
     static {
         try {
-            busTable = new JsonTable<>(Bus.class, "src\\main\\java\\com\\StefanusSimonJBusRS\\json\\account.json");
+            busTable = new JsonTable<>(Bus.class, "D:\\JBusAndroid Anus\\src\\main\\java\\com\\StefanusSimonJBusRS\\json\\bus.json");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -40,13 +40,12 @@ public class BusController implements BasicGetController <Bus> {
             @RequestParam int price,
             @RequestParam int stationDepartureId,
             @RequestParam int stationArrivalId
-            ){ Account account = Algorithm.<Account>find(AccountController.accountTable, acc->acc.id == accountId && acc.company != null);
+    ){ Account account = Algorithm.<Account>find(AccountController.accountTable, acc->acc.id == accountId && acc.company != null);
         if (account == null){
             return new BaseResponse<>(false,"Account tidak berhasil ditemukan dan bukan renter",null);
         }
         Station departure = Algorithm.<Station>find(StationController.stationTable,station -> station.id == stationDepartureId);
         Station arrival = Algorithm.<Station>find(StationController.stationTable,station -> station.id == stationArrivalId);
-
         if (departure == null && arrival == null ){
             return new BaseResponse<>(false, "Stasiun departure dan arrival tidak berhasil ditambahkan",null);
         }
@@ -59,20 +58,39 @@ public class BusController implements BasicGetController <Bus> {
     @PostMapping("/addSchedule")
     public BaseResponse<Bus> addSchedule(
             @RequestParam int busId,
-            @RequestParam String time
-    ){for(Bus x : getJsonTable()) {
-        if(x.id == busId) {
-            try {
-                x.addSchedule(Timestamp.valueOf(time));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-
-            return new BaseResponse<>(true, "Berhasil", x);
+            @RequestParam String time){
+        Predicate<Bus> p = b -> b.id == busId;
+        if(!Algorithm.exists(busTable, p)){
+            return new BaseResponse<>(false, "Bus not found", null);
         }
-    }
-        return new BaseResponse<>(false, "Tidak Berhasil", null);
+        Bus bus = Algorithm.find(busTable, p);
+        System.out.println(time);
+        Timestamp scheduleTime;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            scheduleTime = Timestamp.valueOf(LocalDateTime.parse(time, formatter));
+        } catch (DateTimeParseException e) {
+            return new BaseResponse<>(false, "Invalid time format", null);
+        }
+        bus.addSchedule(scheduleTime);
+        return new BaseResponse<>(true, "Schedule added", bus);
     }
 
+    @GetMapping("/getAllBus")
+    public BaseResponse<List<Bus>> getAllBus(){
+        return new BaseResponse<>(true, "Berhasil", getJsonTable());
+    }
+
+    @GetMapping("/getMyBus")
+    public BaseResponse<List<Bus>> getMyBus(
+            @RequestParam int accountId
+    ){
+        Account account = Algorithm.<Account>find(AccountController.accountTable, acc->acc.id == accountId && acc.company != null);
+        if (account == null){
+            return new BaseResponse<>(false,"Account tidak berhasil ditemukan dan bukan renter",null);
+        }
+        List<Bus> buses = Algorithm.<Bus>collect(getJsonTable(), bus -> bus.accountId == accountId);
+        return new BaseResponse<>(true,"Berhasil",buses);
+    }
 
 }

@@ -1,1 +1,0 @@
-[{"email":"stefanussimon50@gmail.com","name":"Stefanus Simon","password":"3679856916d72f4af6b5251c30aa3ef2","company":{"address":"griya zayida","companyName":"rapinmakmur","phoneNumber":"085893385835","REGEX_NAME":"^[A-Z][a-zA-Z0-9_]{3,19}$","REGEX_PHONE":"^[0-9]{9,12}$","id":0},"balance":200.0,"id":0}]

@@ -2,7 +2,7 @@ package com.StefanusSimonJBusRS.controller;
 
 import com.StefanusSimonJBusRS.Algorithm;
 import com.StefanusSimonJBusRS.dbjson.JsonTable;
-import com.StefanusSimonJBusRS.dbjson.Serializable;
+import com.StefanusSimonJBusRS.Serializable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 

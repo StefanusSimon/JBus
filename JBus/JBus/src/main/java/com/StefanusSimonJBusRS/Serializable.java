@@ -1,4 +1,4 @@
-package com.StefanusSimonJBusRS.dbjson;
+package com.StefanusSimonJBusRS;
 import java.util.HashMap;
 
 /**

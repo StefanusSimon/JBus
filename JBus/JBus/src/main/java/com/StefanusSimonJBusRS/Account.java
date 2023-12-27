@@ -1,8 +1,6 @@
 package com.StefanusSimonJBusRS;
 
 
-import com.StefanusSimonJBusRS.dbjson.Serializable;
-
 import java.util.regex.Pattern;
 
 /**
@@ -14,7 +12,6 @@ public class Account extends Serializable
     public String email;
     public String name;
     public String password;
-
     public Renter company;
     public Double balance;
 
@@ -28,7 +25,6 @@ public class Account extends Serializable
         this.password = password;
         this.company = null;
         this.balance = 0.0D;
-        validate();
     }
     
     public String toString(){

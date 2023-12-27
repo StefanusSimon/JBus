@@ -30,44 +30,42 @@ public class Schedule
     }
     
     public void printSchedule() {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy HH:mm:ss");
-    String formattedDepartureSchedule = dateFormat.format(this.departureSchedule.getTime());
-    System.out.println("Tanggal keberangkatan: " + formattedDepartureSchedule);
-    System.out.println("Daftar kursi dan ketersediaan kursinya: ");
-    
-    int maxSeatsPerRow = 4;
-    int currentSeat = 1;
-    
-    for (String seat : this.seatAvailability.keySet()) {
-        String symbol = this.seatAvailability.get(seat)? "O" : "X";
-        System.out.print(seat + " : " + symbol + "\t");
-        if (currentSeat % maxSeatsPerRow == 0) {
-            System.out.println();
-        }
-        currentSeat ++;
-        }
-    System.out.println("\n");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy HH:mm:ss");
+        String formattedDepartureSchedule = dateFormat.format(this.departureSchedule.getTime());
+        System.out.println("Tanggal keberangkatan: " + formattedDepartureSchedule);
+        System.out.println("Daftar kursi dan ketersediaan kursinya: ");
+
+        int maxSeatsPerRow = 4;
+        int currentSeat = 1;
+
+        for (String seat : this.seatAvailability.keySet()) {
+            String symbol = this.seatAvailability.get(seat)? "O" : "X";
+            System.out.print(seat + " : " + symbol + "\t");
+            if (currentSeat % maxSeatsPerRow == 0) {
+                System.out.println();
+            }
+            currentSeat ++;
+            }
+        System.out.println("\n");
     }
-   
-   public boolean isSeatAvailable(String seat){
-       if(seatAvailability.containsKey(seat)){
-           return seatAvailability.get(seat);
-       }
-       return false;
-   }
+
+    public boolean isSeatAvailable (String seat){
+        System.out.println(seat + " " + (seatAvailability.containsKey(seat) && seatAvailability.get(seat)));
+        return seatAvailability.containsKey(seat) && seatAvailability.get(seat);
+    }
    
    public void bookSeat(String seat){
        seatAvailability.put(seat, false);
    }
 
-   public boolean isSeatAvailable (List<String> seat){
-       for(int x = 0; x < seat.size(); x++){
-           if(seatAvailability.containsKey(seat.get(x))){
-               return seatAvailability.get(seat.get(x));
-           }
-       }
-       return false;
-   }
+    public boolean isSeatAvailable(List<String> seats){
+        for(String seat : seats){
+            if(!isSeatAvailable(seat)){
+                return false;
+            }
+        }
+        return true;
+    }
 
    public void bookSeat(List<String>seat){
        for(String i : seat) {

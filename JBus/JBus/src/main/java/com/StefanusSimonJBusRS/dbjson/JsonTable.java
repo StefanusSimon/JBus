@@ -1,4 +1,5 @@
 package com.StefanusSimonJBusRS.dbjson;
+import com.StefanusSimonJBusRS.Serializable;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -22,9 +23,9 @@ public class JsonTable<T> extends Vector<T> {
 
                 int lastId = 0;
                 for (T item : this) {
-                    if (item instanceof Serializable) {
+                    if (item instanceof com.StefanusSimonJBusRS.Serializable) {
 
-                        Serializable serializableItem = (Serializable) item;
+                        com.StefanusSimonJBusRS.Serializable serializableItem = (com.StefanusSimonJBusRS.Serializable) item;
                         lastId = Math.max(lastId, serializableItem.id);
                     }
                 }

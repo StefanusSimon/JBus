@@ -7,10 +7,12 @@ import com.StefanusSimonJBusRS.dbjson.JsonAutowired;
 import com.StefanusSimonJBusRS.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/station")
 public class StationController implements BasicGetController<Station> {
-    public static @JsonAutowired(value = Station.class, filepath = "src\\main\\java\\com\\netlabJBus\\json\\station.json") JsonTable<Station> stationTable;
+    public static @JsonAutowired(value = Station.class, filepath = "D:\\JBusAndroid Anus\\src\\main\\java\\com\\StefanusSimonJBusRS\\json\\station.json") JsonTable<Station> stationTable;
     @Override
     public JsonTable<Station> getJsonTable() {
         return stationTable;
@@ -49,4 +51,8 @@ public class StationController implements BasicGetController<Station> {
         }
     }
 
+    @GetMapping("/getAll")
+    public List<Station> getAllStation(){
+        return stationTable;
+    }
 }

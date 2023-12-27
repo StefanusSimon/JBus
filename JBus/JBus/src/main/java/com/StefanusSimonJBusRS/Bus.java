@@ -1,5 +1,4 @@
 package com.StefanusSimonJBusRS;
-import com.StefanusSimonJBusRS.dbjson.Serializable;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -21,20 +20,20 @@ public class Bus extends Serializable
    public Station arrival;
    public List<Schedule> schedules;
    public int accountId;
-   
-   public Bus (int accountId, String name, List<Facility>facilities, Price price, int capacity, BusType busType, Station departure, Station arrival){
-       super();
-       this.name = name;
-       this.facilities = new ArrayList<>();
-       this.price = price;
-       this.capacity = capacity;
-       this.busType = busType;
-       this.departure = departure;
-       this.arrival = arrival;
-       this.schedules = new ArrayList<>();
-       this.accountId = accountId;
-   }
-   
+
+    public Bus(int accountId,String name, List<Facility> facilities, Price price, int capacity, BusType busType, Station departure, Station arrival)
+    {
+        super();
+        this.accountId = accountId;
+        this.capacity = capacity;
+        this.facilities = facilities;
+        this.price = price;
+        this.name = name;
+        this.busType = busType;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.schedules = new ArrayList<Schedule>();
+    }
    public String toString(){
        String println = "Bus Info: " + " | Id: " + id + " | Name: " + name + " | Facility: " + facilities + " | Price: " + price + " | Capacity: " + capacity + " | Bus Type: " + busType + " | Departure: " + departure + " | Arrival: " + arrival;
        return println;
